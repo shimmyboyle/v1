@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shrinking Logo Site</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img src="hr-logo.svg" alt="Logo" class="logo">
+    </div>
+  </header>
+
+  <nav class="menu-bar">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div class="content">
+  </div>
+
+  <script>
+    let isAnimating = false;
+    
+    window.addEventListener('scroll', () => {
+      if (isAnimating) return;
+      
+      isAnimating = true;
+      
+      requestAnimationFrame(() => {
+        const header = document.querySelector('.header');
+        const menuBar = document.querySelector('.menu-bar');
+        const scrollThreshold = window.innerHeight * 0.4;
+        
+        if (window.scrollY > scrollThreshold) {
+          header.classList.add('scrolled');
+          menuBar.classList.add('visible');
+        } else {
+          header.classList.remove('scrolled');
+          menuBar.classList.remove('visible');
+        }
+        
+        isAnimating = false;
+      });
+    });
+  </script>
+</body>
+</html>
